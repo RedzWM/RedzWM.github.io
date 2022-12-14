@@ -11,6 +11,10 @@
 <button onclick="document.getElementById('demo').innerHTML = getRandomInt(0,99)">Click Me</button>
 
 <p id="demo"></p>
+  
+  <div id="myDiv" style="background-image:url('background.jpg');border:1px solid black;height:400px;width:400px;">
+This is myDiv.</div>
+<br>
 
 <script>
 function myFunction() {
@@ -24,6 +28,9 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 }
+  
+  let img = document.getElementById("myDiv").style.backgroundImage;
+document.getElementById("demo").innerHTML = img;
 </script>
 
 </body>
