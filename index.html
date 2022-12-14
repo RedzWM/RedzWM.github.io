@@ -1,1 +1,30 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="/action_page.php" onsubmit="return myFunction()">
+  Lấy mấy số: <input type="text" id="fname" size="5" name="fname"><br>
+  Mỗi số có mấy chữ số (1-6): <input type="text" id="age" size="5" name="age"><br>
+  <input type="submit" value="Thăng hoa nào!"> 
+</form>
+
+<button onclick="document.getElementById('demo').innerHTML = getRandomInt(0,99)">Click Me</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var age = document.getElementById("age").value;
+  var fname = document.getElementById("fname").value;
+  submitOK = "true";
+  }
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+</script>
+
+</body>
+</html>
