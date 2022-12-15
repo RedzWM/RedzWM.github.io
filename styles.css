@@ -5,17 +5,27 @@ h1 {
     font-family: "Source Sans Pro", sans-serif;
     font-weight: bold;
     color: white;
+        font-size: 4vw;
 }
 img {
   width: 100%;
   height: auto;
 }
-body { 
-  background-image: url('background.jpeg');
+body{
+  /* background-image: url('background.jpeg'); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center; 
   background-color: black;
+}
+.background { 
+
+  position: relative;
+}
+.form{
+    position: absolute;
+            top: 17px;
+            left: 20px;
 }
 input[type=text] {
   width: 10px;
@@ -31,21 +41,27 @@ select {
   padding: 5px 17px;
   border: 2px solid red;
   border-radius: 4px;
+  font-size: 4vw;
 
 }
 label{
     font-family: "Source Sans Pro", sans-serif;
     font-weight: normal;
     color: white;
+    font-size: 4vw;
+
 }
 button {
         width: auto;
   padding: 5px 35px;
    font-family: "Source Sans Pro", sans-serif;
     font-weight: bold;
+    font-size: 4vw;
+
 }
 p{
         font-family: "Source Sans Pro", sans-serif;
     font-weight: normal;
     color: white;
+    font-size: 4vw;
 }
