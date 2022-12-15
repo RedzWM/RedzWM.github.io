@@ -1,3 +1,5 @@
+/* Place your CSS styles in this file */
+
 h1 {
     text-align: center;
     font-family: "Source Sans Pro", sans-serif;
@@ -36,9 +38,14 @@ label{
     font-weight: normal;
     color: white;
 }
-input[type=submit] {
+button {
         width: auto;
   padding: 5px 35px;
    font-family: "Source Sans Pro", sans-serif;
     font-weight: bold;
+}
+p{
+        font-family: "Source Sans Pro", sans-serif;
+    font-weight: normal;
+    color: white;
 }
