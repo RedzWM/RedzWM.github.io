@@ -1,33 +1,57 @@
-<!DOCTYPE html>
-<html>
-<body>
+<!doctype html>
 
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>A16 LQD</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+
+<h1>Thần số học A16</h1>
 <form action="/action_page.php" onsubmit="return myFunction()">
-  Lấy mấy số: <input type="text" id="fname" size="5" name="fname"><br>
-  Mỗi số có mấy chữ số (1-6): <input type="text" id="age" size="5" name="age"><br>
+<label for="num">Lấy mấy số:  </label>
+  <select id="num" name="num">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  </select>
+  <br>
+  <br>
+  <label for="digit">Mấy chữ số:  </label>
+  <select id="digit" name="digit">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select>
+  <br>
+  <br>
   <input type="submit" value="Thăng hoa nào!"> 
 </form>
 
-<button onclick="document.getElementById('demo').innerHTML = getRandomInt(0,99)">Click Me</button>
+<button onclick="document.getElementById('Num1').innerHTML = getRandomInt(0,99)">Click Me</button>
 
-<p id="demo"></p>
-  
-<script>
-function myFunction() {
-  var age = document.getElementById("age").value;
-  var fname = document.getElementById("fname").value;
-  submitOK = "true";
-  }
+<p id="Num1"></p>
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
-}
-  document.body.style.backgroundImage = "url('background.jpeg')";
-  let img = document.getElementById("myDiv").style.backgroundImage;
-document.getElementById("demo").innerHTML = img;
-</script>
+        
+        <!-- Load external JavaScript -->
+        <script src="scripts.js"></script>
+        
+    </body>
 
-</body>
 </html>
