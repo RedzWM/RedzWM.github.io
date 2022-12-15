@@ -18,6 +18,16 @@ function getRandomInt(min, max) {
 }
 
 function showNum() {
+      document.getElementById("num1").innerHTML = ""
+    document.getElementById("num2").innerHTML = ""
+    document.getElementById("num3").innerHTML = ""
+    document.getElementById("num4").innerHTML = ""
+    document.getElementById("num5").innerHTML = ""
+    document.getElementById("num6").innerHTML = ""
+    document.getElementById("num7").innerHTML = ""
+    document.getElementById("num8").innerHTML = ""
+    document.getElementById("num9").innerHTML = ""
+    document.getElementById("num10").innerHTML = ""
     let data = getForm()
     let num = data.num
     for(let i=1; i<=num; i++){
