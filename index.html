@@ -1,69 +1,81 @@
 <!doctype html>
 
 <html>
-    <head>
-        <meta charset="utf-8">
 
-        <title>A16 LQD</title>
+<head>
+  <meta charset="utf-8">
 
-        <!-- Load external CSS styles -->
-        <link rel="stylesheet" href="styles.css">
+  <title>A16 LQD</title>
 
-    </head>
+  <!-- Load external CSS styles -->
+  <link rel="stylesheet" href="styles.css">
 
-    <body>
+</head>
 
-    <h1>Thần số học A16</h1>
+<body>
 
-<div class="background">
-<img src="background.jpeg">
-<div class="form">
+  <h1>Thần số học A16</h1>
 
-<label for="num">Lấy mấy số:  </label>
-  <select id="num" name="num">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-  </select>
-  <br>
-  <br>
-  <label for="digit">Mấy chữ số:  </label>
-  <select id="digit" name="digit">
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-  </select>
-  <br>
-  <br>
+  <div class="background">
+    <img src="background.jpeg">
+    <div class="form">
 
-<button onclick="showNum()">Thăng hoa nào!</button>
+      <label for="num">Lấy mấy số: </label>
+      <select id="num" name="num">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      <br>
+      <br>
+      <label for="digit">Mấy chữ số: </label>
+      <select id="digit" name="digit">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+      <br>
+      <br>
 
-<p id="num1"></p>
-<p id="num2"></p>
-<p id="num3"></p>
-<p id="num4"></p>
-<p id="num5"></p>
-<p id="num6"></p>
-<p id="num7"></p>
-<p id="num8"></p>
-<p id="num9"></p>
-<p id="num10"></p>
-</div>
-</div>
+      <button onclick="showNum()">Thăng hoa nào!</button>
 
-        
-        <!-- Load external JavaScript -->
-        <script src="scripts.js"></script>
-        
-    </body>
+      <table>
+        <tr>
+          <td id="num1" data-empty=""></td>
+          <td id="num2" data-empty=""></td>
+          <td id="num3" data-empty=""></td>
+        </tr>
+        <tr>
+          <td id="num4" data-empty=""></td>
+          <td id="num5" data-empty=""></td>
+          <td id="num6" data-empty=""></td>
+        </tr>
+        <tr>
+          <td id="num7" data-empty=""></td>
+          <td id="num8" data-empty=""></td>
+          <td id="num9" data-empty=""></td>
+        </tr>
+        <tr>
+          <td id="num10" data-empty=""></td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+
+
+  <!-- Load external JavaScript -->
+  <script src="scripts.js"></script>
+
+</body>
 
 </html>
