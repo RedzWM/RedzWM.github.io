@@ -28,20 +28,23 @@ function showNum() {
   document.getElementById("num8").innerHTML = ""
   document.getElementById("num9").innerHTML = ""
   document.getElementById("num10").innerHTML = ""
+  document.getElementById("dai").innerHTML = ""
   let data = getForm()
   let num = data.num
-  for (let i = 1; i <= num; i++) {
-    let number = "num" + [i]
+  for(let i=1; i<=num; i++){
+      let number = "num"+[i]
 
-    document.getElementById(number).innerHTML = (getRandomInt(0, parseInt(data.max))).toString().padStart(data.max.length, '0')
+  document.getElementById(number).innerHTML = (getRandomInt(0,parseInt(data.max))).toString().padStart(data.max.length,'0')
   }
+  var dai =["Bắc", "Trung", "Nam", "Bắc<br>Nam", "Bắc<br>Trung", "Trung<br>Nam", "Bắc<br>Trung<br>Nam"]
+      document.getElementById("dai").innerHTML = dai[getRandomInt(0,7)]
 
-  const paragraphs = document.querySelectorAll('td');
-  paragraphs.forEach(td => {
-    if (td.innerHTML === '') {
-      td.setAttribute('data-empty', '');
-    } else {
-      td.removeAttribute('data-empty');
-    }
-  });
+  const paragraphs = document.querySelectorAll('p');
+paragraphs.forEach(p => {
+if (p.innerHTML === '') {
+  p.setAttribute('data-empty', '');
+} else {
+  p.removeAttribute('data-empty');
+}
+});
 }
