@@ -7,7 +7,7 @@ h1 {
   color: white;
   }
   
-  img {
+  /* img {
   width: 1024px;
   height: 682px;
    object-fit: cover; 
@@ -15,7 +15,7 @@ h1 {
       position: relative;
   
   
-  }
+  } */
   
   body{
   /* background-image: url('background.jpeg');
@@ -30,10 +30,13 @@ h1 {
   
   .background { 
   position: relative;
-  width: 1024px;
-  height: 682px;
+  max-width: 1024px;
+  max-height: 682px;
+  /* width: 100%;
+  height: auto; */
   top: 17px;
   right: 0;
+  object-fit: cover;
   }
   
   .form{
