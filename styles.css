@@ -5,34 +5,44 @@ h1 {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: bold;
   color: white;
-  font-size: 4vw;
-}
-
-img {
-  width: 100%;
-  height: auto;
-}
-
-body {
-  /* background-image: url('background.jpeg'); */
+  }
+  
+  img {
+  width: 1024px;
+  height: 682px;
+   object-fit: cover; 
+  
+      position: relative;
+  
+  
+  }
+  
+  body{
+  /* background-image: url('background.jpeg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position: center; 
+  width: 1024px;
+  height: 682px;
+  position: relative; */
   background-color: black;
-}
-
-.background {
-
+  }
+  
+  .background { 
   position: relative;
-}
-
-.form {
+  width: 1024px;
+  height: 682px;
+  top: 17px;
+  right: 0;
+  }
+  
+  .form{
   position: absolute;
   top: 17px;
   left: 20px;
-}
-
-input[type=text] {
+  }
+  
+  input[type=text] {
   width: 10px;
   padding: 5px 15px;
   margin: 8px 0;
@@ -40,26 +50,24 @@ input[type=text] {
   border: 2px solid red;
   border-radius: 4px;
   color: aliceblue;
-}
-
-select {
+  }
+  
+  select {
   width: auto;
   padding: 5px 17px;
   border: 2px solid red;
   border-radius: 4px;
-  font-size: 4vw;
-
-}
-
-label {
+  font-size: 2.5vw;
+  }
+  
+  label{
   font-family: "Source Sans Pro", sans-serif;
   font-weight: normal;
   color: white;
-  font-size: 4vw;
-
-}
-
-button {
+  font-size: 2.5vw;
+  }
+  
+  button {
   width: auto;
   padding: 5px 35px;
   font-family: "Source Sans Pro", sans-serif;
@@ -80,27 +88,8 @@ button {
   background: green;
   color: aliceblue;
   }
-
-td {
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: normal;
-  color: white;
-  font-size: 4vw;
-  background-color: black;
-  border: 2px solid red;
-}
-
-td[data-empty] {
-  border: none;
-}
-
-table {
-  border: 1px solid whitesmoke;
-  border-spacing: 20px;
-
-}
-
-p{
+  
+  p{
   font-family: "Source Sans Pro", sans-serif;
   font-weight: normal;
   color: white;
@@ -111,9 +100,9 @@ p{
   position: absolute;
   border: solid red;
   }
-
-  p[data-empty] {
-    border: none;
+  
+  p[data-empty]{
+      border: none
   }
   
   p[id=num1]{
@@ -172,7 +161,7 @@ p{
   border: dashed red;
   font-size: 2vw;
   }
-
+  
   p[id=dai][data-empty]{
-    border: none;
-    }
+      border: none
+  }
