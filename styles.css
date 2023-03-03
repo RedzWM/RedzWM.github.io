@@ -176,3 +176,6 @@ p{
   p[id=dai][data-empty]{
     border: none;
     }
+    iframe {
+			background-color: white;
+		}
