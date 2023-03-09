@@ -1,77 +1,96 @@
-/* Place your JavaScript in this file */
-function getForm() {
-  var num = document.getElementById("num").value;
-  var digit = document.getElementById("digit").value;
-  submitOK = "true";
+function getData(peopleList) {
+  var people = peopleList || ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"];
+  var groups = [];
 
-  var max = "9"
-  for (let i = 1; i < digit; i++) {
-    max = max + "9"
-  }
-  return { num, max }
-}
+  // Shuffle people array to randomize the order
+  people = shuffle(people);
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
-}
-
-function showNum() {
-  // document.getElementById("num1").innerHTML = ""
-  // document.getElementById("num2").innerHTML = ""
-  // document.getElementById("num3").innerHTML = ""
-  // document.getElementById("num4").innerHTML = ""
-  // document.getElementById("num5").innerHTML = ""
-  // document.getElementById("num6").innerHTML = ""
-  // document.getElementById("num7").innerHTML = ""
-  // document.getElementById("num8").innerHTML = ""
-  // document.getElementById("num9").innerHTML = ""
-  // document.getElementById("num10").innerHTML = ""
-  // document.getElementById("dai").innerHTML = ""
-  
-  let data = getForm()
-  let num = data.num
-  // Create circle output values
-  const container = document.getElementById("container");
-  for (let i = 1; i <= 10; i++) {
-    const element = document.createElement("div");
-    element.classList.add("element");
-
-    // create a new p element
-    const p = document.createElement('p');
-
-    // set the text content of the p element
-    p.textContent = (getRandomInt(0, parseInt(data.max))).toString().padStart(data.max.length, '0');
-    // p.id = "num" + [i]
-
-    // append the p element to the div
-    element.appendChild(p);
-
-    container.appendChild(element);
-  }
-  const elements = document.querySelectorAll("div.element");
-  const radius = 250;
-  const angle = 360 / elements.length;
-  for (let i = 0; i < elements.length; i++) {
-    const x = radius * Math.cos((angle * i) * (Math.PI / 180)) + 640;
-    const y = radius * Math.sin((angle * i) * (Math.PI / 180)) + 300;
-    elements[i].style.left = x + "px";
-    elements[i].style.top = y + "px";
-  }
-
-  // document.getElementById(number).innerHTML = (getRandomInt(0, parseInt(data.max))).toString().padStart(data.max.length, '0')
-
-  var dai = ["Bắc", "Trung", "Nam", "Bắc<br>Nam", "Bắc<br>Trung", "Trung<br>Nam", "Bắc<br>Trung<br>Nam"]
-  document.getElementById("dai").innerHTML = dai[getRandomInt(0, 7)]
-
-  const paragraphs = document.querySelectorAll('p');
-  paragraphs.forEach(p => {
-    if (p.innerHTML === '') {
-      p.setAttribute('data-empty', '');
-    } else {
-      p.removeAttribute('data-empty');
+  // Divide people into groups
+  var groupSize = Math.floor(people.length / 7); // round down to ensure all groups have equal or fewer members
+  var remainder = people.length % 7; // find the remainder of people that don't fit into an equal number of groups
+  var startIndex = 0;
+  for (var i = 0; i < 7; i++) {
+    var group = [];
+    for (var j = startIndex; j < startIndex + groupSize; j++) {
+      if (people[j]) {
+        group.push(people[j]);
+      }
     }
-  });
+    startIndex += groupSize;
+    if (remainder > 0 && startIndex < people.length) { // if there are people remaining, add them to a group
+      group.push(people[startIndex]);
+      startIndex++;
+      remainder--;
+    }
+    groups.push(group);
+  }
+
+  // Randomly distribute remaining people to groups
+  while (remainder > 0) {
+    var randomIndex = Math.floor(Math.random() * groups.length);
+    if (groups[randomIndex].length < groupSize + 1) { // only add to group if it won't exceed groupSize
+      groups[randomIndex].push(people[startIndex]);
+      startIndex++;
+      remainder--;
+    }
+  }
+
+  // Return the new data
+  var newData = { 
+    "Thứ 2": groups[0],
+    "Thứ 3": groups[1],
+    "Thứ 4": groups[2],
+    "Thứ 5": groups[3],
+    "Thứ 6": groups[4],
+    "Thứ 7": groups[5],
+    "Chủ Nhật": groups[6]
+  };
+  return newData;
 }
 
+
+
+function updateHTML(newData) {
+  var html = "";
+  for (var key in newData) {
+    if (newData.hasOwnProperty(key)) {
+      html += "<p>" + key + ":</p><ul>";
+      for(var i = 0; i < newData[key].length; i++) {
+        html += "<li>" + newData[key][i] + "</li>";
+      }
+      html += "</ul>";
+    }
+  }
+  // Clear old data before updating with new data
+  $("#result").empty();
+  // Update HTML with new data
+  $("#result").html(html);
+}
+
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
+
+// Refresh data when button is clicked
+$("#refresh-button").off("click").on("click", function() {
+  // Get new data
+  var newData = getData();
+let arrayGroups = shuffle(Object.values(newData))
+var finalData = {}
+for(var i=0;i<7;i++){
+  finalData[Object.keys(newData)[i]] = arrayGroups[i];
+}
+  // Update HTML with new data
+  updateHTML(finalData);
+
+});
