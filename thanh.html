@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>A16 LQD</title>
+
+  <!-- Load external CSS styles -->
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+  <h1>Thần số học A16</h1>
+
+  <div class="background">
+    <img src="background.jpeg">
+    <div class="form">
+
+      <label for="num">Lấy mấy số: </label>
+      <select id="num" name="num">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      <br>
+      <br>
+      <label for="digit">Mấy chữ số: </label>
+      <select id="digit" name="digit">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+      <br>
+      <br>
+
+      <button onclick="showNum()">Thăng hoa nào!</button>
+    </div>
+    <div class="countdown">
+      <label for="countdown">Đếm ngược</label>
+      <td>
+      <tr><p id="hour"></p></tr>
+      <tr><p id="minute"></p></tr>
+      <p id="second"></p>
+    </div>
+    <div id="container">
+      <!-- 10 elements will be added here -->
+    </div>
+    <a data-type="countdown" data-id="3707789" class="tickcounter" style="display: block; width: 100%; position: relative; padding-bottom: 25%" title="Countdown" href="//www.tickcounter.com/">Countdown</a>
+
+  </div>
+
+  <iframe src="https://www.minhngoc.net.vn/free/index.php"
+ width="500" height="2000" frameborder="0" scrolling="auto"
+ id="iframe_xosominhngoc" name="iframe_xosominhngoc"></iframe>
+
+  <!-- Load external JavaScript -->
+  <script src="scripts.js"></script>
+
+</body>
+
+</html>
