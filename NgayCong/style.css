@@ -15,3 +15,7 @@ label {
 input, button {
     margin: 5px 0;
 }
+
+#calendar {
+    margin-top: 20px;
+}
