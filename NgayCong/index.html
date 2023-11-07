@@ -2,6 +2,10 @@
 <html>
 <head>
     <title>Ghi nhận công việc</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -24,19 +28,8 @@
         <button type="submit">Ghi nhận</button>
     </form>
     
-    <!-- Hiển thị thông tin của từng nhân viên -->
-    <div id="employeeInfo">
-        <h2>Thông tin nhân viên</h2>
-        <ul id="employeeList"></ul>
-    </div>
-    
-    <!-- Hiển thị tổng số giờ làm việc -->
-    <div id="totalHours">
-        <h2>Tổng số giờ làm việc</h2>
-        <p>Tuần này: <span id="weeklyTotal"></span> giờ</p>
-        <p>Tháng này: <span id="monthlyTotal"></span> giờ</p>
-        <p>Năm nay: <span id="yearlyTotal"></span> giờ</p>
-    </div>
+    <!-- Hiển thị lịch công việc -->
+    <div id="calendar"></div>
 
     <script src="script.js"></script>
 </body>
