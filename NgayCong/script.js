@@ -3,7 +3,8 @@ const employees = []; // Mảng lưu trữ thông tin của mỗi nhân viên
 const workForm = document.getElementById("workForm");
 const employeeNameInput = document.getElementById("employeeName");
 const workDateInput = document.getElementById("workDate");
-const hoursWorkedInput = document.getElementById("hoursWorked");
+const startTimeInput = document.getElementById("startTime");
+const endTimeInput = document.getElementById("endTime");
 const employeeList = document.getElementById("employeeList");
 const weeklyTotal = document.getElementById("weeklyTotal");
 const monthlyTotal = document.getElementById("monthlyTotal");
@@ -25,7 +26,13 @@ function calculateTotals() {
     employees.forEach(function(employee) {
         employee.work.forEach(function(workItem) {
             const workDate = new Date(workItem.date);
-            const hoursWorked = parseFloat(workItem.hours);
+            const startTime = workItem.start;
+            const endTime = workItem.end;
+
+            const start = new Date(`${workItem.date}T${startTime}`);
+            const end = new Date(`${workItem.date}T${endTime}`);
+
+            const hoursWorked = (end - start) / (1000 * 60 * 60); // Tính số giờ làm việc
 
             // Tính tổng số giờ cho tuần hiện tại.
             if (workDate >= oneWeekAgo) {
@@ -55,12 +62,14 @@ workForm.addEventListener("submit", function(event) {
 
     const employeeName = employeeNameInput.value;
     const workDate = workDateInput.value;
-    const hoursWorked = hoursWorkedInput.value;
+    const startTime = startTimeInput.value;
+    const endTime = endTimeInput.value;
 
     // Tạo một đối tượng đại diện cho công việc
     const workItem = {
         date: workDate,
-        hours: parseFloat(hoursWorked),
+        start: startTime,
+        end: endTime,
     };
 
     // Tìm hoặc tạo một đối tượng nhân viên
@@ -77,12 +86,13 @@ workForm.addEventListener("submit", function(event) {
     employee.work.push(workItem);
 
     const listItem = document.createElement("li");
-    listItem.textContent = `Tên: ${employeeName}, Ngày công: ${workDate}, Giờ làm việc: ${hoursWorked} giờ`;
+    listItem.textContent = `Tên: ${employeeName}, Ngày công: ${workDate}, Giờ từ ${startTime} đến ${endTime}`;
     employeeList.appendChild(listItem);
 
     employeeNameInput.value = "";
     workDateInput.value = "";
-    hoursWorkedInput.value = "";
+    startTimeInput.value = "";
+    endTimeInput.value = "";
 
     // Gọi lại hàm tính tổng số giờ sau khi ghi nhận công việc mới.
     calculateTotals();
