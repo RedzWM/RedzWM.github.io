@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Numbers</title>
+</head>
+<body>
+    <h1>Random Numbers</h1>
+    
+    <button onclick="generateRandomNumbers()">Generate</button>
+    
+    <h2>Random Numbers (1-50, 5 numbers):</h2>
+    <ul id="randomNumbersList"></ul>
+    
+    <h2>Random Numbers (1-12, 2 numbers):</h2>
+    <ul id="randomNumbersList2"></ul>
+
+    <h2>Random Numbers (1-49, 6 numbers):</h2>
+    <ul id="randomNumbersList3"></ul>
+
+    <script>
+        function generateRandomNumber(min, max, exclude = []) {
+            let number;
+            do {
+                number = Math.floor(Math.random() * (max - min + 1)) + min;
+            } while (exclude.includes(number));
+            return number;
+        }
+
+        function generateRandomNumbersList(count, min, max, exclude = []) {
+            const numbers = [];
+            for (let i = 0; i < count; i++) {
+                const number = generateRandomNumber(min, max, numbers.concat(exclude));
+                numbers.push(number);
+            }
+            return numbers;
+        }
+
+        function generateRandomNumbers() {
+            const randomNumbersList = document.getElementById('randomNumbersList');
+            const randomNumbersList2 = document.getElementById('randomNumbersList2');
+            const randomNumbersList3 = document.getElementById('randomNumbersList3');
+
+            // Clear previous results
+            randomNumbersList.innerHTML = '';
+            randomNumbersList2.innerHTML = '';
+            randomNumbersList3.innerHTML = '';
+
+            // Generate and display random numbers (1-50, 5 numbers)
+            const randomNumbers1to50 = generateRandomNumbersList(5, 1, 50);
+            randomNumbers1to50.forEach(number => {
+                const listItem = document.createElement('li');
+                listItem.textContent = number;
+                randomNumbersList.appendChild(listItem);
+            });
+
+            // Generate and display random numbers (1-12, 2 numbers)
+            const randomNumbers1to12 = generateRandomNumbersList(2, 1, 12);
+            randomNumbers1to12.forEach(number => {
+                const listItem = document.createElement('li');
+                listItem.textContent = number;
+                randomNumbersList2.appendChild(listItem);
+            });
+
+            // Generate and display random numbers (1-49, 6 numbers)
+            const randomNumbers1to49_6 = generateRandomNumbersList(6, 1, 49);
+            randomNumbers1to49_6.forEach(number => {
+                const listItem = document.createElement('li');
+                listItem.textContent = number;
+                randomNumbersList3.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
