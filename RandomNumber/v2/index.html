@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Magic Star Việt Nam</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(ellipse at center, #8b0000 0%, #330000 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      color: #fff200;
+      text-align: center;
+      user-select: none;
+      height: 100vh;
+    }
+
+    #controls {
+      position: absolute;
+      top: 40px; /* tăng khoảng cách so với trên */
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(139, 0, 0, 0.8);
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #fff200cc;
+      z-index: 10;
+      user-select: text;
+    }
+
+    #controls input, #controls button {
+      padding: 8px;
+      margin: 5px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-weight: bold;
+      color: #8b0000;
+      background: #fff200;
+      transition: background-color 0.3s ease;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    #controls input[type=number]::-webkit-inner-spin-button, 
+    #controls input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none;
+      margin: 0; 
+    }
+
+    #controls input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    #generateButton {
+      background: linear-gradient(45deg, #ffde00, #b8860b);
+      color: #8b0000;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+      font-size: 18px;
+      padding: 10px 20px;
+    }
+
+    #generateButton:hover {
+      transform: scale(1.1);
+      background-color: #ffd700;
+      color: #5a0000;
+    }
+
+    canvas {
+      display: block;
+      margin: 0 auto;
+      background: transparent;
+      position: relative;
+      top: 0;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <label>Mấy con (1-5): <input type="number" id="numberCount" min="1" max="5" value="5" /></label>
+    <label>Độ dài số (1-5): <input type="number" id="digitLength" min="1" max="5" value="2" /></label>
+    <button id="generateButton">✨ Tạo Số ✨</button>
+  </div>
+
+  <canvas id="magicStarCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById("magicStarCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      drawMagicStar();
+    });
+    resizeCanvas();
+
+    function drawVietnamStar(cx, cy, outerRadius, innerRadius, glowColor) {
+      const points = 5;
+      const step = Math.PI / points;
+      ctx.beginPath();
+      for (let i = 0; i < 2 * points; i++) {
+        const r = i % 2 === 0 ? outerRadius : innerRadius;
+        const angle = i * step - Math.PI / 2;
+        const x = cx + r * Math.cos(angle);
+        const y = cy + r * Math.sin(angle);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = "#ffde00";
+      ctx.shadowColor = glowColor;
+      ctx.shadowBlur = 30;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    function drawCircleWithNumber(cx, cy, radius, number, digitLength) {
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgba(255, 222, 0, 0.7)";
+      ctx.shadowColor = "#ffde00";
+      ctx.shadowBlur = 15;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      ctx.fillStyle = "#8b0000";
+
+      const maxFontSize = radius * 1.5;
+      const minFontSize = radius * 0.6;
+      const fontSize = maxFontSize - (digitLength - 1) * (maxFontSize - minFontSize) / 4;
+
+      ctx.font = `bold ${fontSize}px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(number, cx, cy);
+    }
+
+    function generateMagicNumbers(count, digitLength) {
+      const numbers = [];
+      for (let i = 0; i < count; i++) {
+        const min = 10 ** (digitLength - 1);
+        const max = 10 ** digitLength - 1;
+        numbers.push(Math.floor(Math.random() * (max - min + 1)) + min);
+      }
+      return numbers;
+    }
+
+    function randomCenterWord() {
+      const words = ["Bắc", "Trung", "Nam"];
+      return words[Math.floor(Math.random() * words.length)];
+    }
+
+    function drawCenterWord(cx, cy, fontSize) {
+      const word = randomCenterWord();
+      ctx.fillStyle = "#8b0000";
+      ctx.font = `bold ${fontSize}px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.shadowColor = "#ffd700";
+      ctx.shadowBlur = 15;
+      ctx.fillText(word, cx, cy);
+      ctx.shadowBlur = 0;
+    }
+
+    function drawMagicStar() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2 + 80; // đẩy xuống sâu hơn
+
+      const outerRadius = Math.min(canvas.width, canvas.height) / 3;
+      const innerRadius = outerRadius * 0.4;
+      const circleRadius = outerRadius / 6; // vòng tròn giữ cố định
+
+      drawVietnamStar(centerX, centerY, outerRadius, innerRadius, "#ffd700");
+
+      let numberCount = parseInt(document.getElementById("numberCount").value);
+      if (numberCount < 1) numberCount = 1;
+      if (numberCount > 5) numberCount = 5;
+
+      let digitLength = parseInt(document.getElementById("digitLength").value);
+      if (digitLength < 1) digitLength = 1;
+      if (digitLength > 5) digitLength = 5;
+
+      const numbers = generateMagicNumbers(numberCount, digitLength);
+      const angleStep = (2 * Math.PI) / numberCount;
+
+      for (let i = 0; i < numberCount; i++) {
+        const angle = i * angleStep - Math.PI / 2;
+        let cx = centerX + Math.cos(angle) * outerRadius * 1.2;
+        let cy = centerY + Math.sin(angle) * outerRadius * 1.22;
+
+        if (i === 0) {
+          cy += 15; // dịch xuống 15px cho số trên đỉnh tránh trùng input
+        }
+
+        drawCircleWithNumber(cx, cy, circleRadius, numbers[i], digitLength);
+      }
+
+      drawCenterWord(centerX, centerY, outerRadius / 4);
+    }
+
+    document.getElementById("generateButton").addEventListener("click", drawMagicStar);
+
+    drawMagicStar();
+  </script>
+</body>
+</html>
