@@ -93,13 +93,17 @@
     const canvas = document.getElementById("magicStarCanvas");
     const ctx = canvas.getContext("2d");
 
+    // Biến toàn cục để lưu trữ các con số hiện tại
+    let currentNumbers = [];
+    let currentCenterWord = "Trung";
+
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
     window.addEventListener("resize", () => {
       resizeCanvas();
-      drawMagicStar();
+      drawMagicStar(false); // Vẽ lại nhưng KHÔNG tạo số mới
     });
     resizeCanvas();
 
@@ -144,12 +148,13 @@
       ctx.fillText(number, cx, cy);
     }
 
+    // Tạo số ngẫu nhiên cho phép cả số bắt đầu bằng 0 (ví dụ 05, 09)
     function generateMagicNumbers(count, digitLength) {
       const numbers = [];
+      const maxVal = 10 ** digitLength - 1;
       for (let i = 0; i < count; i++) {
-        const min = 10 ** (digitLength - 1);
-        const max = 10 ** digitLength - 1;
-        numbers.push(Math.floor(Math.random() * (max - min + 1)) + min);
+        const randNum = Math.floor(Math.random() * (maxVal + 1));
+        numbers.push(randNum.toString().padStart(digitLength, '0'));
       }
       return numbers;
     }
@@ -160,18 +165,17 @@
     }
 
     function drawCenterWord(cx, cy, fontSize) {
-      const word = randomCenterWord();
       ctx.fillStyle = "#8b0000";
       ctx.font = `bold ${fontSize}px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.shadowColor = "#ffd700";
       ctx.shadowBlur = 15;
-      ctx.fillText(word, cx, cy);
+      ctx.fillText(currentCenterWord, cx, cy);
       ctx.shadowBlur = 0;
     }
 
-    function drawMagicStar() {
+    function drawMagicStar(generateNew = true) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2 + 80; // đẩy xuống sâu hơn
@@ -190,7 +194,12 @@
       if (digitLength < 1) digitLength = 1;
       if (digitLength > 5) digitLength = 5;
 
-      const numbers = generateMagicNumbers(numberCount, digitLength);
+      // Chỉ sinh số mới khi được yêu cầu (ví dụ khi nhấn nút Tạo số)
+      if (generateNew || currentNumbers.length !== numberCount || (currentNumbers.length > 0 && currentNumbers[0].length !== digitLength)) {
+        currentNumbers = generateMagicNumbers(numberCount, digitLength);
+        currentCenterWord = randomCenterWord();
+      }
+
       const angleStep = (2 * Math.PI) / numberCount;
 
       for (let i = 0; i < numberCount; i++) {
@@ -202,15 +211,15 @@
           cy += 15; // dịch xuống 15px cho số trên đỉnh tránh trùng input
         }
 
-        drawCircleWithNumber(cx, cy, circleRadius, numbers[i], digitLength);
+        drawCircleWithNumber(cx, cy, circleRadius, currentNumbers[i], digitLength);
       }
 
       drawCenterWord(centerX, centerY, outerRadius / 4);
     }
 
-    document.getElementById("generateButton").addEventListener("click", drawMagicStar);
+    document.getElementById("generateButton").addEventListener("click", () => drawMagicStar(true));
 
-    drawMagicStar();
+    drawMagicStar(true);
   </script>
 </body>
 </html>

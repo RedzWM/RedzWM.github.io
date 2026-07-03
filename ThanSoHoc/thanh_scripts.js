@@ -81,16 +81,27 @@ function shuffle(array) {
 }
 
 
-// Refresh data when button is clicked
+// Refresh data khi nhấn nút chia lịch
 $("#refresh-button").off("click").on("click", function() {
-  // Get new data
-  var newData = getData();
-let arrayGroups = shuffle(Object.values(newData))
-var finalData = {}
-for(var i=0;i<7;i++){
-  finalData[Object.keys(newData)[i]] = arrayGroups[i];
-}
-  // Update HTML with new data
-  updateHTML(finalData);
+  // Lấy danh sách tên từ ô nhập liệu
+  var inputVal = $("#people-input").val();
+  var peopleList = null;
+  
+  if (inputVal && inputVal.trim() !== "") {
+    peopleList = inputVal.split(",")
+                         .map(name => name.trim())
+                         .filter(name => name.length > 0);
+  }
 
+  // Lấy dữ liệu chia nhóm ngẫu nhiên
+  var newData = getData(peopleList);
+  var arrayGroups = shuffle(Object.values(newData));
+  var finalData = {};
+  
+  for(var i = 0; i < 7; i++){
+    finalData[Object.keys(newData)[i]] = arrayGroups[i];
+  }
+  
+  // Cập nhật giao diện HTML
+  updateHTML(finalData);
 });

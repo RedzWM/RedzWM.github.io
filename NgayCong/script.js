@@ -6,10 +6,12 @@ const workDateInput = document.getElementById("workDate");
 const startTimeInput = document.getElementById("startTime");
 const endTimeInput = document.getElementById("endTime");
 
+let calendar;
+
 document.addEventListener("DOMContentLoaded", function() {
     const calendarEl = document.getElementById("calendar");
     
-    const calendar = new FullCalendar.Calendar(calendarEl, {
+    calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "timeGridWeek", // Chế độ xem theo tuần
         headerToolbar: {
             left: "prev,next today",
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const start = `${workItem.date}T${workItem.start}`;
                     const end = `${workItem.date}T${workItem.end}`;
                     events.push({
-                        title: `${employee.name} - ${workItem.start} to ${workItem.end}`,
+                        title: `${employee.name} (${workItem.start} - ${workItem.end})`,
                         start: start,
                         end: end
                     });
@@ -35,19 +37,55 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     calendar.render();
+
+    // Lắng nghe sự kiện submit để lưu công việc
+    if (workForm) {
+        workForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const name = employeeNameInput.value.trim();
+            const date = workDateInput.value;
+            const start = startTimeInput.value;
+            const end = endTimeInput.value;
+
+            if (!name || !date || !start || !end) return;
+
+            // Tìm nhân viên đã tồn tại hoặc tạo mới
+            let employee = employees.find(emp => emp.name.toLowerCase() === name.toLowerCase());
+            if (!employee) {
+                employee = { name: name, work: [] };
+                employees.push(employee);
+            }
+
+            // Thêm giờ làm vào danh sách
+            employee.work.push({ date, start, end });
+
+            // Reset form (trừ tên nhân viên để tiện nhập tiếp)
+            workDateInput.value = "";
+            startTimeInput.value = "";
+            endTimeInput.value = "";
+
+            // Làm mới lịch để hiển thị sự kiện mới
+            calendar.refetchEvents();
+            
+            // Tính tổng giờ làm
+            calculateTotals();
+        });
+    }
 });
 
 // Hàm tính tổng số giờ làm việc trong tuần, tháng và năm
 function calculateTotals() {
-    const now = new Date();
-    const oneWeekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
-    const oneMonthAgo = new Date(now);
-    oneMonthAgo.setMonth(now.getMonth() - 1);
-    const oneYearAgo = new Date(now);
-    oneYearAgo.setFullYear(now.getFullYear() - 1);
-
-    // ... (Đoạn mã tính tổng giờ giống như trước)
-
-    // Gọi lại hàm tính tổng số giờ sau khi ghi nhận công việc mới.
-    calculateTotals();
+    let totalHours = 0;
+    employees.forEach(employee => {
+        employee.work.forEach(workItem => {
+            const start = new Date(`1970-01-01T${workItem.start}`);
+            const end = new Date(`1970-01-01T${workItem.end}`);
+            const diffMs = end - start;
+            if (diffMs > 0) {
+                totalHours += diffMs / (1000 * 60 * 60);
+            }
+        });
+    });
+    console.log(`Tổng cộng giờ làm đã ghi nhận: ${totalHours.toFixed(2)} giờ`);
 }
