@@ -42,12 +42,18 @@ input[type=text], select {
   border: 2px solid red;
   border-radius: 4px;
   color: aliceblue;
+  background-color: black; /* Sửa lỗi chữ trắng trên nền trắng */
 }
 
-/* Select Dropdown */
+/* Select Dropdown & Options */
 select {
   padding: 5px 17px;
   font-size: 4vw;
+}
+
+select option {
+  background-color: black;
+  color: aliceblue;
 }
 
 /* Labels */
@@ -111,61 +117,61 @@ p[data-empty] {
   border: none;
 }
 
-/* Positioning of Output Paragraphs */
+/* Positioning of Output Paragraphs (Sử dụng vw để tỷ lệ chuẩn theo chiều rộng ảnh nền) */
 p[id=num1] {
-  top: 80px;
-  right: 500px;
+  top: 7.81vw;
+  right: 48.83vw;
 }
 
 p[id=num2] {
-  bottom: 20px;
-  right: 310px;
+  bottom: 1.95vw;
+  right: 30.27vw;
 }
 
 p[id=num3] {
-  top: 80px;
-  right: 110px;
+  top: 7.81vw;
+  right: 10.74vw;
 }
 
 p[id=num4] {
-  bottom: 80px;
-  right: 500px;
+  bottom: 7.81vw;
+  right: 48.83vw;
 }
 
 p[id=num5] {
-  bottom: 80px;
-  right: 110px;
+  bottom: 7.81vw;
+  right: 10.74vw;
 }
 
 p[id=num6] {
-  top: 10px;
-  right: 310px;
+  top: 0.98vw;
+  right: 30.27vw;
 }
 
 p[id=num7] {
-  top: 190px;
-  right: 560px;
+  top: 18.55vw;
+  right: 54.69vw;
 }
 
 p[id=num8] {
-  bottom: 190px;
-  right: 40px;
+  bottom: 18.55vw;
+  right: 3.91vw;
 }
 
 p[id=num9] {
-  top: 190px;
-  right: 40px;
+  top: 18.55vw;
+  right: 3.91vw;
 }
 
 p[id=num10] {
-  bottom: 190px;
-  right: 560px;
+  bottom: 18.55vw;
+  right: 54.69vw;
 }
 
 /* Dai Paragraph Styling */
 p[id=dai] {
-  bottom: 280px;
-  right: 290px;
+  bottom: 27.34vw;
+  right: 28.32vw;
   border: dashed red;
   font-size: 2vw;
 }

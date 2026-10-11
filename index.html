@@ -1,683 +1,508 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anh Phung - Portfolio</title>
+    <title>REDZ & CO. — Software Engineering & Autonomous Agentic QA Platform</title>
+    <meta name="description"
+        content="Elite software engineering consultancy backed by 20+ years of technical leadership, a QA Co-Founder, and a proprietary Claude-powered Agentic QA Platform.">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#08090d',
+                            card: '#10121a',
+                            border: '#1c2030',
+                            claude: '#d97706',
+                            emerald: '#10b981',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 10%, #cbd5e1 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-glow {
+            background: radial-gradient(circle at 50% -10%, rgba(217, 119, 6, 0.18) 0%, rgba(8, 9, 13, 0) 70%);
+        }
+
+        .agent-border {
+            background: linear-gradient(90deg, rgba(217, 119, 6, 0.4), rgba(16, 185, 129, 0.4));
+        }
+    </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <span class="logo-text">Anh Phung</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+
+<body class="bg-brand-dark text-slate-300 font-sans selection:bg-amber-500/20 selection:text-amber-300">
+
+    <!-- Top Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-brand-dark/85 border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-700 to-emerald-600 flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-amber-900/30">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <div>
+                    <span class="text-white font-extrabold tracking-tight text-xl leading-none">REDZ<span
+                            class="text-amber-500">.CODES</span></span>
+                    <span class="block text-[10px] text-slate-400 font-mono tracking-widest uppercase mt-0.5">Software &
+                        Agentic QA</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" class="hover:text-white transition-colors">Why Quality-First</a>
+                <a href="#services" class="hover:text-white transition-colors">Software Engineering</a>
+                <a href="#ai-platform"
+                    class="hover:text-white transition-colors flex items-center gap-1.5 text-amber-400">
+                    <i class="fa-solid fa-sparkles text-xs"></i> AI Agent Platform
+                </a>
+                <a href="#track-record" class="hover:text-white transition-colors">20Y Track Record</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="#contact"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 transition-all shadow-lg shadow-amber-600/20 border border-amber-400/30">
+                    <span>Consult Our Founders</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span class="wave">👋</span> Hi, I'm
-                    <span class="highlight">Anh Phung</span>
-                </h1>
-                <p class="hero-subtitle">Senior Software QA Engineer | Quality Advocate | Problem Solver</p>
-                <p class="hero-description">
-                    Experienced Quality Assurance Specialist with over 15 years of proven expertise in ensuring 
-                    top-quality results for diverse companies. Currently based in Berlin, Germany.
+    <section class="relative pt-36 pb-24 md:pt-48 md:pb-32 hero-glow border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+
+            <!-- Badges -->
+            <div
+                class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono mb-8 backdrop-blur-sm">
+                <i class="fa-solid fa-brain text-amber-400"></i>
+                <span>Building Proprietary Agentic QA on Claude 3.5 Sonnet Architecture</span>
+            </div>
+
+            <!-- Title -->
+            <h1
+                class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.1] mb-6">
+                Engineering World-Class Software.<br>
+                <span class="gradient-text">Co-Founded by QA Veterans. Supercharged by AI Agents.</span>
+            </h1>
+
+            <!-- Description -->
+            <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10">
+                Backed by a core development team with <strong class="text-white">20+ years of engineering
+                    mastery</strong> and a <strong class="text-white">QA specialist Co-Founder</strong>. We architect,
+                build, and scale mission-critical software while developing next-generation autonomous AI agents for
+                zero-defect automation.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#contact"
+                    class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 shadow-xl shadow-amber-600/25 transition-all text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calendar-check"></i> Book Technical Discovery Call
+                </a>
+                <a href="#ai-platform"
+                    class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-slate-300 bg-brand-card hover:bg-slate-800 border border-brand-border transition-all text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-robot text-amber-400"></i> Explore Agentic QA Engine
+                </a>
+            </div>
+
+            <!-- Highlights Grid -->
+            <div
+                class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-brand-border/60 text-left">
+                <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                    <div class="text-2xl font-extrabold text-white font-mono">20+ Yrs</div>
+                    <div class="text-xs text-slate-400 mt-1">Core Engineering Experience</div>
+                </div>
+                <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                    <div class="text-2xl font-extrabold text-amber-400 font-mono">QA-First</div>
+                    <div class="text-xs text-slate-400 mt-1">Co-Founder DNA & Philosophy</div>
+                </div>
+                <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                    <div class="text-2xl font-extrabold text-emerald-400 font-mono">Claude 3.5</div>
+                    <div class="text-xs text-slate-400 mt-1">Autonomous Test Synthesis</div>
+                </div>
+                <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                    <div class="text-2xl font-extrabold text-white font-mono">Berlin & VN</div>
+                    <div class="text-xs text-slate-400 mt-1">Dual European-Asia Delivery</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- The Quality-First Thesis (Founders Section) -->
+    <section id="about" class="py-24 bg-brand-dark border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-mono uppercase tracking-widest text-amber-400">Our Founding
+                        Philosophy</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                        Why a QA-Led Leadership Team Changes Everything in Software Delivery.
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        In typical agencies, testing is an afterthought outsourced to junior staff once the code is
+                        written. The result? Flaky builds, continuous regressions, security vulnerabilities, and
+                        exploding maintenance costs.
+                    </p>
+                    <p
+                        class="text-slate-300 leading-relaxed text-sm sm:text-base border-l-2 border-amber-500 pl-4 py-1">
+                        <strong>At Redz & Co., our Co-Founder is a Principal QA Specialist with 15+ years of production
+                            experience</strong> leading test governance for payment backbones (Senpay), 5M-user
+                        super-apps (VinID), and European enterprise platforms. We engineer software with quality built
+                        into the architecture from Day 1.
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4 text-xs font-mono text-slate-400">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Zero
+                            Flaky Tests Guarantee</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i>
+                            High-Concurrency Scalability</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Strict
+                            GDPR & PCI-DSS Compliance</div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div
+                        class="bg-brand-card border border-brand-border rounded-2xl p-8 relative overflow-hidden shadow-2xl">
+                        <div
+                            class="absolute -right-10 -bottom-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none">
+                        </div>
+                        <div class="flex items-center gap-4 mb-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-slate-800 border border-brand-border flex items-center justify-center text-amber-400 text-2xl font-bold">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Co-Founder & QA Principal</h4>
+                                <p class="text-xs font-mono text-slate-400">15+ Years Enterprise QA • Ex-Sendo, Tiki,
+                                    VinID • Based in Berlin</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed italic mb-6">
+                            "We know every single bottleneck that causes software to fail in production because we've
+                            spent two decades dissecting them. By building our own Claude AI agent platform directly
+                            into our client delivery cycle, we give founders enterprise-tier stability at startup
+                            velocity."
+                        </p>
+                        <div
+                            class="p-4 rounded-xl bg-slate-900/80 border border-brand-border/60 text-xs font-mono text-slate-300 space-y-2">
+                            <div class="flex justify-between"><span>Core Engineering Practice:</span> <span
+                                    class="text-white font-bold">20+ Years Accumulated</span></div>
+                            <div class="flex justify-between"><span>High-Load Systems Audited:</span> <span
+                                    class="text-amber-400 font-bold">10,000+ Concurrent Users</span></div>
+                            <div class="flex justify-between"><span>European Retail Clients:</span> <span
+                                    class="text-emerald-400 font-bold">30+ Global Brands (TestIO)</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services: Consulting & Software Engineering -->
+    <section id="services" class="py-24 bg-brand-dark/50 border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-amber-400">Core Offerings</span>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Software Consulting & Full-Stack
+                    Engineering</h3>
+                <p class="text-slate-400 mt-4 text-base">We design and construct production-ready digital products with
+                    enterprise durability.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div
+                    class="bg-brand-card border border-brand-border hover:border-amber-500/50 transition-all rounded-2xl p-8 flex flex-col group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Startup MVP & Scale-Up Engineering</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6 flex-grow">
+                        Turning complex product visions into high-performing web and mobile platforms in 8-12 weeks.
+                        Architected correctly from the start to handle investor scrutiny and rapid user surges.
+                    </p>
+                    <div class="pt-4 border-t border-brand-border font-mono text-xs text-amber-400">
+                        Next.js • Node.js/Go • React Native • Cloud Native
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div
+                    class="bg-brand-card border border-brand-border hover:border-amber-500/50 transition-all rounded-2xl p-8 flex flex-col group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Fintech, Payments & High-Load Architecture</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6 flex-grow">
+                        Battle-tested consultancy for complex transactions, wallet ecosystems, microservices
+                        refactoring, and multi-tier reconciliation engines supporting 10,000+ concurrent requests.
+                    </p>
+                    <div class="pt-4 border-t border-brand-border font-mono text-xs text-emerald-400">
+                        Microservices • Banking APIs • PCI-DSS • Event Streams
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div
+                    class="bg-brand-card border border-brand-border hover:border-amber-500/50 transition-all rounded-2xl p-8 flex flex-col group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Technical Architecture & QA Governance Audit</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6 flex-grow">
+                        Independent code audits, automated load testing, security review, and restructuring of
+                        engineering processes to unblock slow release cycles and reduce technical debt.
+                    </p>
+                    <div class="pt-4 border-t border-brand-border font-mono text-xs text-blue-400">
+                        Performance Profiling • CI/CD Hardening • ISTQB Standards
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flagship: Proprietary AI Agent Platform (Claude Startup Focus) -->
+    <section id="ai-platform" class="py-24 bg-brand-dark border-b border-brand-border relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 mb-4">
+                    <i class="fa-solid fa-microchip"></i> Proprietary R&D for Claude Startup Program
+                </div>
+                <h3 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                    The Agentic QA Platform
+                </h3>
+                <p class="text-slate-400 mt-4 text-base">
+                    How our proprietary multi-agent platform harnesses Anthropic's Claude 3.5 Sonnet to completely
+                    automate software quality assurance.
                 </p>
-                <div class="hero-buttons">
-                    <a href="#about" class="btn btn-primary">Explore More</a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                </div>
             </div>
-            <div class="hero-image">
-                <div class="avatar-container">
-                    <div class="avatar">
-                        <img src="images/avatar.jpg" alt="Anh Phung" class="avatar-img">
+
+            <!-- Agentic Features 3-Column -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+
+                <div class="p-8 rounded-2xl bg-brand-card border border-amber-500/30 relative shadow-xl">
+                    <div class="text-amber-400 text-3xl mb-4"><i class="fa-solid fa-eye"></i></div>
+                    <h4 class="text-lg font-bold text-white mb-2">Computer Use Visual Exploration</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Leverages Claude 3.5 Sonnet Computer Use to interact with real web browsers like a human
+                        tester—clicking, scrolling, validating layouts, and spotting UI anomalies without brittle
+                        locators.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-brand-card border border-amber-500/30 relative shadow-xl">
+                    <div class="text-emerald-400 text-3xl mb-4"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h4 class="text-lg font-bold text-white mb-2">Autonomous Self-Healing Locators</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        When front-end developers change classes or DOM structures, our Claude agent dynamically infers
+                        element intent, corrects test scripts in real-time, and prevents CI/CD pipeline breakage.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-brand-card border border-amber-500/30 relative shadow-xl">
+                    <div class="text-blue-400 text-3xl mb-4"><i class="fa-solid fa-code-pull-request"></i></div>
+                    <h4 class="text-lg font-bold text-white mb-2">Automated Bug Diagnosis & PR Fixes</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Upon identifying a test failure, the agent cross-references console logs, network traffic, and
+                        backend repos to output a root-cause explanation and propose a ready-to-review GitHub PR.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Architecture Terminal Workflow -->
+            <div
+                class="bg-black/85 rounded-2xl border border-brand-border overflow-hidden max-w-4xl mx-auto shadow-2xl">
+                <div class="bg-slate-900/90 px-6 py-4 border-b border-brand-border flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                        <span class="text-xs font-mono text-slate-300 ml-3">AgenticQA-Claude-Engine // Runtime
+                            Workflow</span>
                     </div>
-                    <div class="orbit-circle orbit-1"></div>
-                    <div class="orbit-circle orbit-2"></div>
+                    <span class="text-xs font-mono text-amber-400"><i class="fa-solid fa-bolt"></i> Claude 3.5 Sonnet
+                        Active</span>
+                </div>
+                <div class="p-6 font-mono text-xs text-slate-300 space-y-3 leading-relaxed">
+                    <div class="text-slate-500">[1] Ingesting commit #8f12a: "Refactor checkout multi-step form to
+                        Server-Driven UI"</div>
+                    <div class="text-amber-400">[2] Agentic Planner: Claude analyzes Figma specs vs. PR diff. Generated
+                        14 dynamic boundary scenarios.</div>
+                    <div class="text-slate-300">[3] Computer Use Agent: Executing headless Chromium test suite...</div>
+                    <div class="text-amber-300">[!] Warning: DOM selector `#submit-payment-btn` missing in revised DOM
+                        tree.</div>
+                    <div class="text-emerald-400">[4] Self-Healing Loop: Claude identified semantically equivalent node
+                        `[data-action="execute-order"]`. Script auto-healed. Test Passed (98.4ms).</div>
+                    <div class="text-blue-400">[5] Result: CI/CD Build #412 PASSED. Full audit log synced to Jira &
+                        Slack. Zero manual intervention required.</div>
                 </div>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse"></div>
+
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <h3>Professional Journey</h3>
-                        <p>
-                            Hello! I'm Anh Phung, a Senior Software QA Engineer with 15+ years of expertise in ensuring software excellence. 
-                            Born in Ho Chi Minh City, Vietnam, I've built my career across Vietnam's dynamic tech ecosystem before relocating 
-                            to Berlin, Germany, where I now thrive as a freelance QA consultant serving international clients.
-                        </p>
-                        <p>
-                            My specialization lies in end-to-end quality assurance—from crafting comprehensive test strategies to implementing 
-                            automated testing frameworks. I've successfully delivered quality results for diverse domains including e-commerce 
-                            platforms, fintech solutions, logistics systems, entertainment portals, mobile gaming, lottery systems, and enterprise 
-                            applications across European and American markets.
-                        </p>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h3>Core Strengths & Passions</h3>
-                        <p>
-                            My approach to quality assurance combines technical precision with leadership excellence. I excel at team 
-                            management, having led QA teams of 2-4 members, mentoring junior testers, and fostering collaborative environments. 
-                            My methodology spans functional, regression, smoke, and performance testing, all grounded in ISTQB best practices 
-                            and Agile/Scrum frameworks.
-                        </p>
-                        <p>
-                            Outside the tech world, I maintain balance through sports (football and basketball enthusiast), exploring new 
-                            destinations while traveling, discovering music, and enjoying strategic gaming. These interests fuel my creativity 
-                            and problem-solving mindset, making me adaptable, resilient, and continuously eager to embrace new challenges 
-                            in the evolving software landscape.
-                        </p>
-                    </div>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="15">0</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="100">0</div>
-                        <div class="stat-label">Projects Completed</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="30">0</div>
-                        <div class="stat-label">International Clients</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="6">0</div>
-                        <div class="stat-label">Countries Served</div>
-                    </div>
-                </div>
+    <!-- Track Record / Enterprise Proof -->
+    <section id="track-record" class="py-24 bg-brand-dark/50 border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-amber-400">Proven Authority</span>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Battle-Tested Across Industry
+                    Giants</h3>
+                <p class="text-slate-400 mt-4 text-base">Our leadership has tested and built systems relied upon by
+                    millions of daily users.</p>
             </div>
-        </div>
-    </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3>Freelance QA Engineer</h3>
-                        <h4>International Clients via TestIO Platform, Berlin, Germany</h4>
-                        <span class="timeline-date">April 2023 - Present</span>
-                        <p>
-                            Independent QA consultant serving 30+ international brands across Europe and North America through TestIO crowdtesting platform. 
-                            Delivering comprehensive quality assurance for diverse industries including e-commerce, fintech, media streaming, lottery systems, 
-                            and enterprise applications.
-                        </p>
-                        <ul class="timeline-highlights">
-                            <li>European retail giants: Decathlon Deutschland, BAUHAUS, Deichmann, WIRmachenDRUCK, NEUFFER Fenster+Türen, CBR eCommerce</li>
-                            <li>Gaming & lottery: Lotto Hessen GmbH, Österreichische Lotterien, Zeppelin GmbH</li>
-                            <li>Media & streaming: Joyn GmbH (ProSiebenSat.1), MediaShop Holding, hmmh multimediahaus AG</li>
-                            <li>E-commerce & DTC: Saatva, Proven Skincare, Brad's Deals, eSalon, Just Spices, Puffy, MDsave</li>
-                            <li>Mobility & transport: Berliner Verkehrsbetriebe (BVG) Android app</li>
-                            <li>Tech platforms: Canva, Personal Capital, RepairPal, Life.Church iOS app, Mix Tech Inc., Ginger (Web + Mobile)</li>
-                            <li>Retail & wholesale: COOP Genossenschaft, BAHAG AG, Oskar Böttcher GmbH</li>
-                        </ul>
-                    </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Experience 1 -->
+                <div class="bg-brand-card p-8 rounded-2xl border border-brand-border">
+                    <div class="text-xs font-mono text-emerald-400 mb-2">FINTECH & E-COMMERCE</div>
+                    <h4 class="text-lg font-bold text-white mb-2">New Core Senpay & Seller Wallet</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Rebuilt core fintech transaction infrastructure supporting 10,000+ concurrent requests,
+                        automated KYC/AML verification, and real-time ledger settlement with 99.99% accuracy.
+                    </p>
+                    <div class="text-[11px] font-mono text-slate-500">Ex-Lead QC @ Sendo.vn</div>
                 </div>
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <div class="timeline-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <h3>Senior QA/QC Engineer</h3>
-                        <h4>TikiNow Smart Logistics, Ho Chi Minh City, Vietnam</h4>
-                        <span class="timeline-date">July 2021 - April 2023</span>
-                        <p>
-                            Led quality assurance for Vietnam's leading logistics platform, overseeing end-to-end testing of delivery management systems.
-                        </p>
-                        <ul class="timeline-highlights">
-                            <li>Team leadership: Managed and mentored 2+ QA engineers, conducting sprint planning and retrospectives</li>
-                            <li>Automation excellence: Implemented API automation framework and bulk test data generation tools</li>
-                            <li>Technology research: Evaluated and introduced emerging testing technologies to improve team efficiency</li>
-                            <li>Stakeholder management: Delivered comprehensive sprint reports to SDM and Product Owners</li>
-                        </ul>
-                    </div>
+
+                <!-- Experience 2 -->
+                <div class="bg-brand-card p-8 rounded-2xl border border-brand-border">
+                    <div class="text-xs font-mono text-amber-400 mb-2">SUPER-APP ECOSYSTEM</div>
+                    <h4 class="text-lg font-bold text-white mb-2">VinID Super-App (5M+ Users)</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Pioneered Server-Driven UI testing architecture across 10+ core modules (Vinhomes, Insurance,
+                        Logistics, Loyalty Club), maintaining 99.5% service uptime across weekly releases.
+                    </p>
+                    <div class="text-[11px] font-mono text-slate-500">Ex-Senior QA @ OneMount Group</div>
                 </div>
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <h3>Senior QA/QC Engineer</h3>
-                        <h4>OneMount Group - VinID Loyalty Customer, Ho Chi Minh City, Vietnam</h4>
-                        <span class="timeline-date">November 2020 - June 2021</span>
-                        <p>
-                            Quality assurance for VinGroup's super-app ecosystem, managing React Native mobile applications with 10+ integrated modules.
-                        </p>
-                        <ul class="timeline-highlights">
-                            <li>Module portfolio: Maintained Vinhomes, Handover, Intercom, Insurance, Helper, Delivery, Community, Parking, Lucky best</li>
-                            <li>Innovation leadership: Pioneered Server Driven UI technology integration for Loyalty club (VinID, Techcombank)</li>
-                            <li>Hybrid automation: Built comprehensive API + UI automation suite for new feature rollouts</li>
-                            <li>Quality governance: Established weekly regression testing protocols ensuring 99.5% uptime</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <div class="timeline-icon">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <h3>Lead QC Engineer</h3>
-                        <h4>Sendo.vn, Ho Chi Minh City, Vietnam</h4>
-                        <span class="timeline-date">May 2019 - October 2020</span>
-                        <p>
-                            Spearheaded QA operations for Vietnam's top e-commerce marketplace, managing critical payment infrastructure and digital commerce initiatives.
-                        </p>
-                        <ul class="timeline-highlights">
-                            <li>Team scaling: Led and trained 4+ QA engineers, establishing automation-first testing culture</li>
-                            <li>Mission-critical projects: Core Payment System rebuild, Seller Wallet platform, Digital Goods marketplace</li>
-                            <li>Concurrency expertise: Designed and executed high-load testing scenarios for payment transactions</li>
-                            <li>Cross-functional collaboration: Partnered with Scrum Masters and Directors on release planning and risk assessment</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-icon">
-                            <i class="fas fa-film"></i>
-                        </div>
-                        <h3>Senior QC Engineer</h3>
-                        <h4>S3Corp - InnovasoftVN, Ho Chi Minh City, Vietnam</h4>
-                        <span class="timeline-date">August 2013 - April 2019</span>
-                        <p>
-                            QA leadership for international entertainment platform portfolio, ensuring quality across multiple client engagements simultaneously.
-                        </p>
-                        <ul class="timeline-highlights">
-                            <li>Multi-project oversight: Coordinated testing for 5+ concurrent entertainment web portals with diverse requirements</li>
-                            <li>Client excellence: Conducted weekly Skype meetings with international stakeholders, maintaining 98% satisfaction rate</li>
-                            <li>Comprehensive testing: User enrollment systems, subscription management, video/photo galleries, payment integration, CMS platforms</li>
-                            <li>Tool expertise: Leveraged Jira and Spiratest for defect tracking and test management across distributed teams</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <div class="timeline-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h3>QC Engineer</h3>
-                        <h4>Texo Design, Ho Chi Minh City, Vietnam</h4>
-                        <span class="timeline-date">May 2013 - July 2013</span>
-                        <p>
-                            Quality assurance for IoT energy management application across Android, iOS, and web platforms.
-                        </p>
-                        <ul class="timeline-highlights">
-                            <li>Documentation excellence: Authored comprehensive test plans, scenarios, and acceptance criteria</li>
-                            <li>Cross-platform validation: Ensured consistent user experience across mobile and web interfaces</li>
-                            <li>Agile integration: Utilized Redmine for sprint management and collaborative bug triaging</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-icon">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                        <h3>QA Tester</h3>
-                        <h4>Gameloft VN, Ho Chi Minh City, Vietnam</h4>
-                        <span class="timeline-date">October 2008 - April 2013</span>
-                        <p>
-                            Career foundation at world-renowned mobile gaming studio, testing AAA titles for global audiences across multiple device ecosystems.
-                        </p>
-                        <ul class="timeline-highlights">
-                            <li>Premium titles portfolio: Infamous Heroes, Wild Blood, Batman: Dark Knight Rises, Modern Combat series, Asphalt 6, Heroes of Order & Chaos</li>
-                            <li>Device expertise: Master device certification for Android platform, ensuring compatibility across 50+ device configurations</li>
-                            <li>Mentorship program: Trained and onboarded 10+ junior testers on game testing methodologies</li>
-                            <li>Quality advocacy: Pioneered bug reporting best practices, reducing critical defect escape rate by 40%</li>
-                        </ul>
-                    </div>
+
+                <!-- Experience 3 -->
+                <div class="bg-brand-card p-8 rounded-2xl border border-brand-border">
+                    <div class="text-xs font-mono text-blue-400 mb-2">EUROPEAN RETAIL & MOBILITY</div>
+                    <h4 class="text-lg font-bold text-white mb-2">30+ Global Brands via Berlin Hub</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Independent enterprise QA audits for German giants including Decathlon Deutschland, BVG Mobility
+                        Android App, Joyn Media Streaming, and BAUHAUS.
+                    </p>
+                    <div class="text-[11px] font-mono text-slate-500">Independent Consultant • Berlin, Germany</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="travel">
-        <div class="container">
-            <h2 class="section-title">Key Projects</h2>
-            <p class="section-subtitle">
-                Notable projects I've contributed to throughout my career
-            </p>
-            <div class="travel-grid">
-                <div class="travel-card">
-                    <div class="travel-image">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-                    <div class="travel-content">
-                        <h3>SENDO.VN - NEW CORE SENPAY</h3>
-                        <p>
-                            Next-generation payment infrastructure rebuilding Sendo's fintech backbone. Complete system overhaul addressing 
-                            scalability bottlenecks and security vulnerabilities. Architected multi-tier account hierarchy (Master/Function 
-                            accounts), integrated banking APIs, real-time SMS notifications, and transaction reconciliation engine supporting 
-                            10,000+ concurrent users.
-                        </p>
-                        <div class="travel-tags">
-                            <span class="tag">Flutter</span>
-                            <span class="tag">Microservices</span>
-                            <span class="tag">PCI-DSS</span>
-                            <span class="tag">Real-time</span>
-                        </div>
+    <!-- Contact & Application Form -->
+    <section id="contact" class="py-24 bg-brand-dark relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-brand-card border border-brand-border rounded-3xl p-8 sm:p-12 shadow-2xl">
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <h3 class="text-3xl font-extrabold text-white">Start With a Founder-Level Consultation</h3>
+                    <p class="text-slate-400 text-sm mt-3">
+                        Discuss your next software project, explore technical advisory, or pilot our Claude-powered
+                        Agentic QA Platform.
+                    </p>
+                    <div
+                        class="inline-flex items-center gap-2 mt-4 px-3 py-1 rounded-full bg-slate-900 border border-brand-border text-xs font-mono text-amber-400">
+                        <i class="fa-solid fa-location-dot"></i> Berlin Office & Global Delivery Hub
                     </div>
                 </div>
-                <div class="travel-card">
-                    <div class="travel-image">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <div class="travel-content">
-                        <h3>SENDO.VN - SELLER WALLET</h3>
-                        <p>
-                            Comprehensive financial management platform empowering 50,000+ sellers. Full-stack testing of account lifecycle 
-                            management, dynamic overdraft calculations, KYC verification workflows, bi-directional Senpay integration, 
-                            automated refund processing, and compliance reporting. Validated transaction integrity across web portal and 
-                            native mobile apps with 99.99% accuracy.
-                        </p>
-                        <div class="travel-tags">
-                            <span class="tag">Native Android/iOS</span>
-                            <span class="tag">KYC/AML</span>
-                            <span class="tag">Financial APIs</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="travel-card">
-                    <div class="travel-image">
-                        <i class="fas fa-ticket-alt"></i>
-                    </div>
-                    <div class="travel-content">
-                        <h3>SENDO.VN - DIGITAL GOODS</h3>
-                        <p>
-                            Multi-category digital marketplace aggregating travel, entertainment, and education sectors. Quality assurance 
-                            for third-party API integrations (airlines, rail systems, cinemas, e-learning platforms), voucher redemption 
-                            mechanics, instant delivery systems, and QR code generation. Tested booking flows, payment gateways, and 
-                            cancellation/refund policies across 15+ service providers.
-                        </p>
-                        <div class="travel-tags">
-                            <span class="tag">API Gateway</span>
-                            <span class="tag">Third-party Integration</span>
-                            <span class="tag">QR Systems</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="travel-card">
-                    <div class="travel-image">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <div class="travel-content">
-                        <h3>ONE MOUNT - VINID LOYALTY</h3>
-                        <p>
-                            VinGroup's flagship super-app serving 5M+ users across Vietnam. Tested modular architecture spanning real estate 
-                            (Vinhomes), logistics (Delivery), insurance, community features, smart parking, and gamification (Lucky best). 
-                            Pioneered QA for Server Driven UI implementation enabling dynamic feature deployment without app updates. 
-                            Validated complex reward point systems, Techcombank co-branding, and Vinbus transportation integration.
-                        </p>
-                        <div class="travel-tags">
-                            <span class="tag">React Native</span>
-                            <span class="tag">Server-Driven UI</span>
-                            <span class="tag">Microservices</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="travel-card">
-                    <div class="travel-image">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="travel-content">
-                        <h3>S3CORP - INNOVASOFT</h3>
-                        <p>
-                            White-label adult entertainment platform portfolio for international clients. Validated subscription models, 
-                            paywall mechanisms, DRM-protected content delivery, user-generated content moderation, advanced search algorithms, 
-                            and multi-tiered membership systems. Ensured GDPR compliance, age verification workflows, and secure payment 
-                            processing. Tested headless CMS architecture powering 8+ branded sites from unified backend.
-                        </p>
-                        <div class="travel-tags">
-                            <span class="tag">Headless CMS</span>
-                            <span class="tag">DRM/CDN</span>
-                            <span class="tag">GDPR</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="travel-card">
-                    <div class="travel-image">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <div class="travel-content">
-                        <h3>GAMELOFT VN - GAMES MOBILE</h3>
-                        <p>
-                            AAA mobile game testing across premium franchises. Validated gameplay mechanics, physics engines, multiplayer 
-                            synchronization, in-app purchases, social features, and performance optimization for 50+ Android devices. 
-                            Titles included FPS (Modern Combat 2-3), racing (Asphalt 6), action-RPG (Wild Blood), MOBA (Heroes of Order 
-                            & Chaos), and licensed properties (Batman, TinTin). Specialized in device fragmentation testing and crash analytics.
-                        </p>
-                        <div class="travel-tags">
-                            <span class="tag">Game Testing</span>
-                            <span class="tag">Unity/Unreal</span>
-                            <span class="tag">Device Lab</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Professional Skills</h2>
-            <div class="skills-content">
-                <div class="skills-category">
-                    <h3><i class="fas fa-code"></i> Testing & QA</h3>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Manual Testing</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="95"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Automation Testing (Selenium, Cypress)</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>API Testing (Postman, REST Assured)</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Performance Testing (JMeter)</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="75"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Mobile Testing (Android, iOS)</span>
-                            <span>92%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="92"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>JIRA</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="95"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Postman</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Git, GitHub, GitLab</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>CI/CD (Jenkins, GitLab CI)</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>TestRail, Confluence</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="88"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3><i class="fas fa-laptop-code"></i> Programming Languages</h3>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Java</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>JavaScript</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Python</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="75"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>SQL</span>
-                            <span>82%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="82"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3><i class="fas fa-comments"></i> Languages</h3>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Vietnamese</span>
-                        </div>
-                        <div class="language-segments">
-                            <div class="segment filled"></div>
-                            <div class="segment filled"></div>
-                            <div class="segment filled"></div>
-                            <div class="segment filled"></div>
-                            <div class="segment filled"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>English</span>
-                        </div>
-                        <div class="language-segments">
-                            <div class="segment filled"></div>
-                            <div class="segment filled"></div>
-                            <div class="segment filled"></div>
-                            <div class="segment"></div>
-                            <div class="segment"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>German</span>
-                        </div>
-                        <div class="language-segments">
-                            <div class="segment filled"></div>
-                            <div class="segment filled"></div>
-                            <div class="segment"></div>
-                            <div class="segment"></div>
-                            <div class="segment"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                <form class="space-y-4" action="https://formsubmit.co/saintmaster@hotmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="New Inquiry - Redz Software Consulting & AI Platform">
+                    <input type="hidden" name="_captcha" value="false">
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-subtitle">
-                Feel free to reach out to me through any of the channels below
-            </p>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Name</label>
+                            <input type="text" name="name" required
+                                class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
                         </div>
-                        <h3>Email</h3>
-                        <p>saintmaster@hotmail.com</p>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h3>Location</h3>
-                        <p>Berlin, Germany</p>
-                        <p class="small-text">Originally from: Ho Chi Minh City, Vietnam</p>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h3>Social Media</h3>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/anh-phung-1a675755/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/RedzWM" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Corporate Email</label>
+                            <input type="email" name="email" required
+                                class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
                         </div>
                     </div>
-                </div>
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/saintmaster@hotmail.com" method="POST">
-                        <!-- FormSubmit Configuration -->
-                        <input type="hidden" name="_subject" value="New message from Portfolio Website">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="text" name="_honey" style="display:none">
-                        
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="submitBtn">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                        
-                        <!-- Success/Error Messages -->
-                        <div id="formStatus" class="form-status"></div>
-                    </form>
-                </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Primary Interest</label>
+                        <select name="service_interest"
+                            class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                            <option>Full-Stack Software Development (MVP / Enterprise)</option>
+                            <option>Pilot Our Claude-Powered Agentic QA Platform</option>
+                            <option>Architecture & High-Load Security/QA Audit</option>
+                            <option>Claude Startup Program / Partner Discussion</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Project Brief</label>
+                        <textarea rows="4" name="message" required
+                            class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                            placeholder="Tell us about your team, tech stack, or release challenges..."></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 shadow-lg shadow-amber-600/30 transition-all text-sm tracking-wide uppercase">
+                        Request Founder Consultation <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Anh Phung. Designed with <i class="fas fa-heart"></i> in Germany</p>
-                <p class="footer-quote">"Quality is not an act, it is a habit" - Aristotle</p>
-                <p class="footer-hobbies">
-                    <i class="fas fa-futbol"></i> Sports | 
-                    <i class="fas fa-plane"></i> Traveling | 
-                    <i class="fas fa-music"></i> Music | 
-                    <i class="fas fa-gamepad"></i> Gaming
-                </p>
+    <footer class="py-12 border-t border-brand-border bg-brand-dark text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="font-extrabold text-white tracking-wider">REDZ<span
+                        class="text-amber-500">.CODES</span></span>
+                <span>© 2026 Redz Technologies. Quality-First Software & AI Systems.</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="https://www.linkedin.com/in/anh-phung-1a675755/" target="_blank"
+                    class="hover:text-amber-400 transition-colors"><i class="fa-brands fa-linkedin text-base"></i>
+                    LinkedIn</a>
+                <a href="https://github.com/RedzWM" target="_blank" class="hover:text-amber-400 transition-colors"><i
+                        class="fa-brands fa-github text-base"></i> GitHub</a>
+                <span class="text-slate-600">|</span>
+                <span>Berlin • Vietnam</span>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script src="script.js"></script>
 </body>
+
 </html>
