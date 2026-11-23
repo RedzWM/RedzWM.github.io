@@ -22,7 +22,7 @@
       "tech": ["OmniRoute", "llm-council", "Tailscale Funnel", "Debian 13"],
       "demoUrl": "https://ber-core-g9.tail377d41.ts.net:8443/",
       "healthUrl": "https://ber-core-g9.tail377d41.ts.net:8443/",
-      "repoUrl": "https://github.com/redz-dev"
+      "repoUrl": "https://github.com/redzwm"
     },
     {
       "id": "ev-engine",
@@ -40,7 +40,7 @@
       "tech": ["Python", "FastAPI", "Docker", "HTML5/JS"],
       "demoUrl": "https://ber-core-g9.tail377d41.ts.net/ev-demo/",
       "healthUrl": "",
-      "repoUrl": "https://github.com/redz-dev"
+      "repoUrl": "https://github.com/redzwm"
     },
     {
       "id": "agentic-qa",
@@ -56,9 +56,9 @@
         "Zero-Flake CI/CD Gates"
       ],
       "tech": ["Playwright", "Python", "Postman Flows", "GitHub Pages"],
-      "demoUrl": "https://redz-dev.github.io/",
+      "demoUrl": "https://redz.codes/",
       "healthUrl": "",
-      "repoUrl": "https://github.com/redz-dev"
+      "repoUrl": "https://github.com/redzwm"
     },
     {
       "id": "multi-world-3d",
@@ -74,9 +74,9 @@
         "Zero Server Compute Cost"
       ],
       "tech": ["React", "TypeScript", "Three.js", "Vite"],
-      "demoUrl": "https://redz-dev.github.io/3d-world/",
+      "demoUrl": "https://redz.codes/3d-world/",
       "healthUrl": "",
-      "repoUrl": "https://github.com/redz-dev"
+      "repoUrl": "https://github.com/redzwm"
     }
   ]
 }
