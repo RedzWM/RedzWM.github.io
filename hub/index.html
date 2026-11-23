@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redz Core Hub — Interactive Project Network</title>
+  <script src="https://unpkg.com/force-graph"></script>
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: rgba(15, 23, 42, 0.88);
+      --border: rgba(148, 163, 184, 0.18);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --live: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+    #graph { width: 100%; height: 100%; }
+
+    /* Top Floating HUD */
+    .hud-top {
+      position: fixed;
+      top: 18px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+      z-index: 10;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand-box, .controls-box {
+      pointer-events: auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 10px var(--live);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.25); }
+    }
+    .brand-title { font-weight: 700; font-size: 15px; letter-spacing: 0.6px; }
+    .brand-sub { font-size: 12px; color: var(--muted); }
+    input, select, button {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+    }
+    input:focus, select:focus { border-color: var(--accent); }
+    button { cursor: pointer; font-weight: 600; transition: 0.15s; }
+    button:hover { border-color: var(--accent); background: rgba(56, 189, 248, 0.15); }
+
+    /* Right Inspector Drawer */
+    .drawer {
+      position: fixed;
+      top: 82px;
+      right: 20px;
+      bottom: 20px;
+      width: 380px;
+      max-width: calc(100vw - 40px);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transform: translateX(430px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 20;
+      overflow-y: auto;
+    }
+    .drawer.open { transform: translateX(0); }
+    .drawer-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    .badge.standby {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.35);
+    }
+    .drawer h2 { font-size: 20px; line-height: 1.3; margin-top: 6px; }
+    .drawer p { font-size: 13.5px; line-height: 1.6; color: #cbd5e1; }
+    .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); font-weight: 700; }
+    .metrics-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .metrics-list li {
+      font-size: 13px;
+      padding: 8px 11px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11.5px;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.12);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .passcode-box {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .actions { margin-top: auto; display: flex; gap: 10px; padding-top: 10px; }
+    .btn-primary {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      background: var(--accent);
+      color: #04101d;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 9px;
+      font-size: 13.5px;
+    }
+    .btn-secondary {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 9px;
+      font-size: 13.5px;
+    }
+    .hint-bottom {
+      position: fixed;
+      bottom: 16px;
+      left: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="hud-top">
+    <div class="brand-box">
+      <div class="pulse-dot"></div>
+      <div>
+        <div class="brand-title" id="hubTitle">REDZ CORE HUB</div>
+        <div class="brand-sub" id="hubSub">Loading network topology...</div>
+      </div>
+    </div>
+    <div class="controls-box">
+      <input type="text" id="searchInput" placeholder="Filter nodes or tech..." />
+      <select id="categoryFilter">
+        <option value="ALL">All Clusters</option>
+      </select>
+      <button id="resetZoomBtn">Center Graph</button>
+    </div>
+  </div>
+
+  <div id="graph"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <div>
+        <span class="badge" id="dStatus">● LIVE</span>
+        <h2 id="dTitle">Project Name</h2>
+      </div>
+      <button id="closeDrawer">✕</button>
+    </div>
+    <div class="section-label" id="dCategory">Category</div>
+    <p id="dSummary"></p>
+
+    <div class="section-label">Key Capabilities & Telemetry</div>
+    <ul class="metrics-list" id="dMetrics"></ul>
+
+    <div class="section-label">Stack & Infrastructure</div>
+    <div class="tags" id="dTech"></div>
+
+    <div class="passcode-box" id="passcodeBox" style="display:none;">
+      <div style="font-size:12px; color:#fbbf24; font-weight:600;">Protected Compute Sandbox</div>
+      <div style="font-size:12px; color:#cbd5e1;">This live demo routes through a rate-limited inference node. Enter invite token if provided:</div>
+      <input type="password" id="inviteToken" placeholder="Optional demo token..." />
+    </div>
+
+    <div class="actions">
+      <a id="dDemoBtn" class="btn-primary" href="#" target="_blank" rel="noopener noreferrer">Launch Live Demo ↗</a>
+      <a id="dRepoBtn" class="btn-secondary" href="#" target="_blank" rel="noopener noreferrer">Source</a>
+    </div>
+  </aside>
+
+  <div class="hint-bottom">Click any project node to inspect & launch • Scroll to zoom • Drag to pan</div>
+
+  <script>
+    let rawData = null;
+    let graphInstance = null;
+
+    async function init() {
+      const res = await fetch('./projects.json?v=' + Date.now());
+      rawData = await res.json();
+
+      document.getElementById('hubTitle').textContent = rawData.hub.title;
+      document.getElementById('hubSub').textContent = `${rawData.hub.subtitle} • ${rawData.projects.length} Active Nodes`;
+
+      // Populate category filter
+      const categories = [...new Set(rawData.projects.map(p => p.category))];
+      const select = document.getElementById('categoryFilter');
+      categories.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat;
+        opt.textContent = cat;
+        select.appendChild(opt);
+      });
+
+      buildGraph('ALL', '');
+
+      document.getElementById('categoryFilter').addEventListener('change', (e) => {
+        buildGraph(e.target.value, document.getElementById('searchInput').value.trim().toLowerCase());
+      });
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        buildGraph(document.getElementById('categoryFilter').value, e.target.value.trim().toLowerCase());
+      });
+      document.getElementById('closeDrawer').addEventListener('click', () => {
+        document.getElementById('drawer').classList.remove('open');
+      });
+      document.getElementById('resetZoomBtn').addEventListener('click', () => {
+        if (graphInstance) graphInstance.zoomToFit(500, 90);
+      });
+    }
+
+    function buildGraph(categoryFilter, query) {
+      const filtered = rawData.projects.filter(p => {
+        const matchCat = categoryFilter === 'ALL' || p.category === categoryFilter;
+        const hay = `${p.title} ${p.category} ${p.summary} ${p.tech.join(' ')}`.toLowerCase();
+        const matchQuery = !query || hay.includes(query);
+        return matchCat && matchQuery;
+      });
+
+      const nodes = [
+        { id: 'CORE', label: rawData.hub.title, type: 'core', color: '#f8fafc', val: 16 }
+      ];
+      const links = [];
+      const addedClusters = new Set();
+
+      filtered.forEach(proj => {
+        const clusterId = 'CLUSTER_' + proj.category;
+        if (!addedClusters.has(clusterId)) {
+          addedClusters.add(clusterId);
+          nodes.push({
+            id: clusterId,
+            label: proj.category,
+            type: 'cluster',
+            color: proj.color || '#64748b',
+            val: 9
+          });
+          links.push({ source: 'CORE', target: clusterId, active: true, color: 'rgba(148,163,184,0.28)' });
+        }
+
+        nodes.push({
+          id: proj.id,
+          label: proj.title,
+          type: 'project',
+          color: proj.color || '#38bdf8',
+          val: 7,
+          project: proj
+        });
+        links.push({
+          source: clusterId,
+          target: proj.id,
+          active: proj.status === 'LIVE',
+          color: proj.color || '#38bdf8'
+        });
+      });
+
+      const elem = document.getElementById('graph');
+      if (!graphInstance) {
+        graphInstance = ForceGraph()(elem)
+          .backgroundColor('#070b14')
+          .nodeRelSize(6)
+          .linkWidth(link => link.active ? 1.6 : 1)
+          .linkColor(link => link.active ? 'rgba(56, 189, 248, 0.35)' : 'rgba(148, 163, 184, 0.15)')
+          .linkDirectionalParticles(link => link.active ? 3 : 0)
+          .linkDirectionalParticleWidth(2.4)
+          .linkDirectionalParticleSpeed(0.006)
+          .linkDirectionalParticleColor(link => link.color)
+          .nodeCanvasObject((node, ctx, globalScale) => {
+            const label = node.label;
+            const fontSize = (node.type === 'core' ? 14 : node.type === 'cluster' ? 12 : 12.5) / globalScale;
+            const radius = node.type === 'core' ? 11 : node.type === 'cluster' ? 7 : 6;
+
+            // Outer glow
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, radius + 3, 0, 2 * Math.PI, false);
+            ctx.fillStyle = node.type === 'core' ? 'rgba(56, 189, 248, 0.22)' : 'rgba(148, 163, 184, 0.12)';
+            ctx.fill();
+
+            // Main node circle
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI, false);
+            ctx.fillStyle = node.color;
+            ctx.fill();
+
+            // Label pill
+            ctx.font = `${node.type === 'core' ? '700' : '600'} ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            ctx.fillStyle = node.type === 'cluster' ? '#94a3b8' : '#f1f5f9';
+            ctx.fillText(label, node.x, node.y + radius + 4 / globalScale);
+          })
+          .onNodeClick(node => {
+            if (node.type === 'project' && node.project) {
+              openDrawer(node.project);
+              graphInstance.centerAt(node.x + 80, node.y, 450);
+            }
+          })
+          .onNodeHover(node => {
+            elem.style.cursor = node && node.type === 'project' ? 'pointer' : 'grab';
+          });
+      }
+
+      graphInstance.graphData({ nodes, links });
+      graphInstance.d3Force('charge').strength(-260);
+      graphInstance.d3Force('link').distance(link => link.source.id === 'CORE' ? 115 : 85);
+      setTimeout(() => graphInstance.zoomToFit(500, 90), 350);
+    }
+
+    function openDrawer(p) {
+      const statusEl = document.getElementById('dStatus');
+      statusEl.textContent = `● ${p.status}`;
+      statusEl.className = p.status === 'LIVE' ? 'badge' : 'badge standby';
+
+      document.getElementById('dTitle').textContent = p.title;
+      document.getElementById('dCategory').textContent = p.category;
+      document.getElementById('dSummary').textContent = p.summary;
+
+      const metricsEl = document.getElementById('dMetrics');
+      metricsEl.innerHTML = '';
+      (p.metrics || []).forEach(m => {
+        const li = document.createElement('li');
+        li.textContent = m;
+        metricsEl.appendChild(li);
+      });
+
+      const techEl = document.getElementById('dTech');
+      techEl.innerHTML = '';
+      (p.tech || []).forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'tag';
+        span.textContent = t;
+        techEl.appendChild(span);
+      });
+
+      const passBox = document.getElementById('passcodeBox');
+      passBox.style.display = p.requiresPasscode ? 'flex' : 'none';
+
+      const demoBtn = document.getElementById('dDemoBtn');
+      demoBtn.href = p.demoUrl;
+      demoBtn.onclick = (e) => {
+        if (p.requiresPasscode) {
+          const tok = document.getElementById('inviteToken').value.trim();
+          if (tok) {
+            const url = new URL(p.demoUrl);
+            url.searchParams.set('token', tok);
+            demoBtn.href = url.toString();
+          }
+        }
+      };
+
+      const repoBtn = document.getElementById('dRepoBtn');
+      repoBtn.href = p.repoUrl || '#';
+      repoBtn.style.display = p.repoUrl ? 'inline-block' : 'none';
+
+      document.getElementById('drawer').classList.add('open');
+    }
+
+    init();
+  </script>
+</body>
+</html>
