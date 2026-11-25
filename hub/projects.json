@@ -77,6 +77,24 @@
       "demoUrl": "https://redz.codes/3d-world/",
       "healthUrl": "",
       "repoUrl": "https://github.com/redzwm"
+    },
+    {
+      "id": "la-table",
+      "title": "LA TABLE — Interactive Menu",
+      "category": "3D & Interactive Web",
+      "color": "#fbbf24",
+      "status": "LIVE",
+      "requiresPasscode": false,
+      "summary": "Editorial restaurant showcase featuring a procedural walnut banquet turntable, trilingual DE/EN/VI switching, touch swipe gestures, and interactive dish inspection.",
+      "metrics": [
+        "Procedural SVG Walnut Turntable",
+        "Trilingual UI (DE / EN / VI)",
+        "Zero-Backend Static Edge"
+      ],
+      "tech": ["HTML5", "CSS3 Transforms", "SVG Turbulence", "Vanilla JS"],
+      "demoUrl": "https://redz.codes/la-table/",
+      "healthUrl": "",
+      "repoUrl": "https://github.com/redzwm"
     }
   ]
 }
